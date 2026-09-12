@@ -1,3 +1,5 @@
+import { cartaoTemDigitosIguais } from '../utils/pagamento'
+
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -37,7 +39,13 @@ function Pagamento() {
   })
 
   function enviarPagamento(dados) {
-    console.log(dados)
+    const fraude = cartaoTemDigitosIguais(dados.numeroCartao)
+
+  if (fraude) {
+    console.log('tentativa de golpe')
+    return
+  }
+    console.log('Compra aprovada')
   }
 
    return (
