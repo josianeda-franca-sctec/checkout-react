@@ -53,6 +53,7 @@ article {
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 16px;
+  border: 1px solid #131212;
 }
 
 article h2 {
@@ -91,7 +92,7 @@ article p {
 }
 
 .resumo-compra {
-  background-color: #f5f7f8;
+  background-color: #6cbee7;
   border: 1px solid #131212;
   border-radius: 8px;
   padding: 16px;
@@ -352,4 +353,27 @@ main > a:not(.botao-finalizar):hover {
     width: 130px;
     height: 130px;
   }
+}
+
+input:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+input[aria-invalid="true"] {
+  border: 2px solid #b00020;
+}
+
+form p[role="alert"] {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #8b0000;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
