@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import Cabecalho from './components/Cabecalho'
 import Carrinho from './pages/Carrinho'
 import Pagamento from './pages/Pagamento'
 import Sucesso from './pages/Sucesso'
@@ -8,6 +9,8 @@ import Falha from './pages/Falha'
 function App() {
   return (
     <BrowserRouter>
+      <Cabecalho />
+
       <Routes>
         <Route path="/" element={<Carrinho />} />
         <Route path="/pagamento" element={<Pagamento />} />

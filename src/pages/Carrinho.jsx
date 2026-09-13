@@ -24,7 +24,10 @@ function Carrinho() {
 
       <ResumoCompra total={total} />
 
-      <Link to="/pagamento">
+      <Link
+        to="/pagamento"
+        className="botao-finalizar"
+      >
         Finalizar compra
       </Link>
     </main>
