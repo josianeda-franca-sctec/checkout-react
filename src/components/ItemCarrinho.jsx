@@ -1,21 +1,29 @@
 function ItemCarrinho({ produto }) {
-    const subtotal = produto.preco * produto.quantidade
+  const subtotal = produto.preco * produto.quantidade
 
-    return (
-        <article>
-            <h2>{produto.nome}</h2>
+  return (
+    <article className="item-carrinho">
+      <img
+        src={produto.imagem}
+        alt={produto.nome}
+        className="imagem-produto"
+      />
 
-            <p>
-                Preço unitário: R$ {produto.preco.toFixed(2).replace('.', ',')}
-            </p>
+      <div className="dados-produto">
+        <h2>{produto.nome}</h2>
 
-            <p>Quantidade: {produto.quantidade}</p>
+        <p>
+          Preço unitário: R$ {produto.preco.toFixed(2).replace('.', ',')}
+        </p>
 
-            <p>
-                Subtotal: R$ {subtotal.toFixed(2).replace('.', ',')}
-            </p>
-        </article>
-    )
+        <p>Quantidade: {produto.quantidade}</p>
+
+        <p>
+          Subtotal: R$ {subtotal.toFixed(2).replace('.', ',')}
+        </p>
+      </div>
+    </article>
+  )
 }
 
 export default ItemCarrinho

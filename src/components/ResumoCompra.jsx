@@ -1,9 +1,9 @@
 function ResumoCompra({ total }) {
   return (
-    <section>
+    <section className="resumo-compra">
       <h2>Resumo da compra</h2>
 
- <p>
+      <p>
         Total: R$ {total.toFixed(2).replace('.', ',')}
       </p>
     </section>
