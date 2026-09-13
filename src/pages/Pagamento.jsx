@@ -1,15 +1,16 @@
-import { cartaoTemDigitosIguais } from '../utils/pagamento'
-
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+
+import usePagamento from '../hooks/usePagamento'
 
 const pagamentoSchema = z.object({
   titular: z
     .string()
     .min(1, 'Informe o nome do titular'),
 
-    numeroCartao: z
+  numeroCartao: z
     .string()
     .transform((valor) => valor.replace(/[\s-]/g, ''))
     .refine(
@@ -17,19 +18,23 @@ const pagamentoSchema = z.object({
       'O cartão deve conter 16 dígitos',
     ),
 
-     validade: z
+  validade: z
     .string()
     .regex(
       /^(0[1-9]|1[0-2])\/\d{2}$/,
       'Informe a validade no formato MM/AA',
     ),
 
-    cvv: z
+  cvv: z
     .string()
     .regex(/^\d{3}$/, 'O CVV deve conter 3 dígitos'),
 })
 
 function Pagamento() {
+  const navigate = useNavigate()
+
+  const { processando, processarPagamento } = usePagamento()
+
   const {
     register,
     handleSubmit,
@@ -38,17 +43,39 @@ function Pagamento() {
     resolver: zodResolver(pagamentoSchema),
   })
 
-  function enviarPagamento(dados) {
-    const fraude = cartaoTemDigitosIguais(dados.numeroCartao)
+   function formatarCartao(evento) {
+    let valor = evento.target.value.replace(/\D/g, '')
 
-  if (fraude) {
-    console.log('tentativa de golpe')
-    return
-  }
-    console.log('Compra aprovada')
+    valor = valor.slice(0, 16)
+
+    valor = valor.replace(/(\d{4})(?=\d)/g, '$1 ')
+
+    evento.target.value = valor
   }
 
-   return (
+  function formatarValidade(evento) {
+    let valor = evento.target.value.replace(/\D/g, '')
+
+    valor = valor.slice(0, 4)
+
+    if (valor.length > 2) {
+      valor = `${valor.slice(0, 2)}/${valor.slice(2)}`
+    }
+
+    evento.target.value = valor
+  }
+
+  async function enviarPagamento(dados) {
+    const aprovado = await processarPagamento(dados.numeroCartao)
+
+    if (aprovado) {
+      navigate('/sucesso')
+      return
+    }
+
+    navigate('/falha')
+  }
+  return (
     <main>
       <h1>Pagamento</h1>
 
@@ -78,7 +105,9 @@ function Pagamento() {
             id="numeroCartao"
             type="text"
             inputMode="numeric"
+            maxLength={19}
             {...register('numeroCartao')}
+            onInput={formatarCartao}
           />
 
           {errors.numeroCartao && (
@@ -94,8 +123,11 @@ function Pagamento() {
           <input
             id="validade"
             type="text"
+            inputMode="numeric"
             placeholder="MM/AA"
+            maxLength={5}
             {...register('validade')}
+            onInput={formatarValidade}
           />
 
           {errors.validade && (
@@ -107,8 +139,8 @@ function Pagamento() {
           <label htmlFor="cvv">
             CVV
           </label>
-        
-        <input
+
+          <input
             id="cvv"
             type="text"
             inputMode="numeric"
@@ -120,8 +152,11 @@ function Pagamento() {
           )}
         </div>
 
-        <button type="submit">
-          Pagar
+        <button
+          type="submit"
+          disabled={processando}
+        >
+          {processando ? 'Processando compra…' : 'Pagar'}
         </button>
       </form>
     </main>
