@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
-
 import produtos from '../data/produtos'
 import ItemCarrinho from '../components/ItemCarrinho'
 import ResumoCompra from '../components/ResumoCompra'
+import { calcularTotal } from '../utils/carrinho'
 
 function Carrinho() {
-  const total = produtos.reduce((acumulador, produto) => {
-    return acumulador + produto.preco * produto.quantidade
-  }, 0)
+  const total = calcularTotal(produtos)
 
   return (
     <main>
