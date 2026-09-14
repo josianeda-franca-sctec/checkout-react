@@ -8,7 +8,7 @@ body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   font-size: 18px;
-  background-color: #fdfcfc;
+  background-color: #d3ebf7;
   color: #222;
 }
 
@@ -92,7 +92,7 @@ article p {
 }
 
 .resumo-compra {
-  background-color: #6cbee7;
+  background-color: #91b6e0;
   border: 1px solid #131212;
   border-radius: 8px;
   padding: 16px;
@@ -111,6 +111,7 @@ article p {
 
 form {
   background-color: #91b6e0;
+  border: 1px solid #131212;
   padding: 20px;
   border-radius: 8px;
   }

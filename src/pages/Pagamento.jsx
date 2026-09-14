@@ -2,17 +2,43 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import usePagamento from '../hooks/usePagamento'
+import produtos from '../data/produtos'
+import ResumoCompra from '../components/ResumoCompra'
+import { calcularTotal } from '../utils/carrinho'
 
 const pagamentoSchema = z.object({
   titular: z
-    .string()
-    .trim()
-    .min(1, 'Informe o nome do titular')
-    .regex(
-      /^[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)+$/,
-      'Informe nome e sobrenome usando apenas letras',
-    ),
+  .string()
+  .trim()
+  .min(1, 'Informe o nome do titular')
+  .refine(
+    (valor) => {
+      const partes = valor.split(/\s+/)
+
+      if (partes.length < 2) {
+        return false
+      }
+
+      return partes.every((parte) => {
+        return /^[A-Za-zÀ-ÿ]{2,20}$/.test(parte)
+      })
+    },
+    'Informe nome e sobrenome válidos',
+  )
+  .refine(
+    (valor) => {
+      const partes = valor.toLowerCase().split(/\s+/)
+
+      return partes.every((parte) => {
+        const vogais = parte.match(/[aeiouáéíóúâêôãõ]/g)
+
+        return vogais && vogais.length >= 1
+      })
+    },
+    'Informe um nome válido',
+  ),
 
   numeroCartao: z
     .string()
@@ -68,13 +94,17 @@ function Pagamento() {
 
   const { processando, processarPagamento } = usePagamento()
 
+  const total = calcularTotal(produtos)
+
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(pagamentoSchema),
-  })
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm({
+  resolver: zodResolver(pagamentoSchema),
+  mode: 'onChange',
+  reValidateMode: 'onChange',
+})
 
   function formatarCartao(evento) {
     let valor = evento.target.value.replace(/\D/g, '')
@@ -131,6 +161,8 @@ function Pagamento() {
     <main>
       <h1>Pagamento</h1>
 
+      <ResumoCompra total={total} />
+
       <form onSubmit={handleSubmit(enviarPagamento)}>
         <div>
           <label htmlFor="titular">
@@ -141,13 +173,9 @@ function Pagamento() {
             id="titular"
             type="text"
             autoComplete="cc-name"
-            aria-invalid={
-              errors.titular ? 'true' : 'false'
-            }
+            aria-invalid={errors.titular ? 'true' : 'false'}
             aria-describedby={
-              errors.titular
-                ? 'erro-titular'
-                : undefined
+              errors.titular ? 'erro-titular': undefined
             }
             {...register('titular')}
             onInput={formatarTitular}
