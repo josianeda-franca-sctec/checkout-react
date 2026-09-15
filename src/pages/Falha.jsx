@@ -5,7 +5,7 @@ function Falha() {
     <main>
       <h1>Falha no pagamento</h1>
 
-      <p>tentativa de golpe</p>
+      <p>Tentativa de golpe</p>
 
       <Link to="/pagamento">
         Tentar novamente

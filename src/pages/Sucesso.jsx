@@ -7,7 +7,7 @@ function Sucesso() {
 
       <p>Pagamento realizado com sucesso.</p>
 
-<Link to="/">
+      <Link to="/">
         Voltar ao carrinho
       </Link>
     </main>
