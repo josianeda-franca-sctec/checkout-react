@@ -1,0 +1,113 @@
+
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Notebook Lenovo IdeaPad",
+      "descricao": "Notebook para estudos, trabalho e produtividade.",
+      "preco": 3299.90,
+      "categoria": "Computadores",
+      "imagem": "https://placehold.co/600x400?text=Notebook",
+      "estoque": 8
+    },
+    {
+      "id": "2",
+      "nome": "Monitor Full HD 24 polegadas",
+      "descricao": "Monitor com resolução Full HD para uso diário.",
+      "preco": 799.90,
+      "categoria": "Computadores",
+      "imagem": "https://placehold.co/600x400?text=Monitor",
+      "estoque": 12
+    },
+    {
+      "id": "3",
+      "nome": "SSD 1 TB",
+      "descricao": "Unidade de armazenamento SSD de alta velocidade.",
+      "preco": 449.90,
+      "categoria": "Computadores",
+      "imagem": "https://placehold.co/600x400?text=SSD",
+      "estoque": 15
+    },
+    {
+      "id": "4",
+      "nome": "Memória RAM DDR4 16 GB",
+      "descricao": "Módulo de memória DDR4 para computadores.",
+      "preco": 289.90,
+      "categoria": "Computadores",
+      "imagem": "https://placehold.co/600x400?text=Memoria+RAM",
+      "estoque": 20
+    },
+    {
+      "id": "5",
+      "nome": "Teclado Mecânico",
+      "descricao": "Teclado mecânico com conexão USB.",
+      "preco": 219.90,
+      "categoria": "Periféricos",
+      "imagem": "https://placehold.co/600x400?text=Teclado",
+      "estoque": 10
+    },
+    {
+      "id": "6",
+      "nome": "Mouse Gamer",
+      "descricao": "Mouse óptico com sensibilidade ajustável.",
+      "preco": 129.90,
+      "categoria": "Periféricos",
+      "imagem": "https://placehold.co/600x400?text=Mouse",
+      "estoque": 18
+    },
+    {
+      "id": "7",
+      "nome": "Headset USB",
+      "descricao": "Headset com microfone para chamadas e jogos.",
+      "preco": 179.90,
+      "categoria": "Periféricos",
+      "imagem": "https://placehold.co/600x400?text=Headset",
+      "estoque": 14
+    },
+    {
+      "id": "8",
+      "nome": "Webcam Full HD",
+      "descricao": "Webcam para videoconferências e aulas online.",
+      "preco": 199.90,
+      "categoria": "Periféricos",
+      "imagem": "https://placehold.co/600x400?text=Webcam",
+      "estoque": 9
+    },
+    {
+      "id": "9",
+      "nome": "Cabo HDMI 2 metros",
+      "descricao": "Cabo HDMI para conexão de vídeo e áudio.",
+      "preco": 39.90,
+      "categoria": "Acessórios",
+      "imagem": "https://placehold.co/600x400?text=Cabo+HDMI",
+      "estoque": 30
+    },
+    {
+      "id": "10",
+      "nome": "Hub USB 4 Portas",
+      "descricao": "Hub USB para conectar múltiplos dispositivos.",
+      "preco": 69.90,
+      "categoria": "Acessórios",
+      "imagem": "https://placehold.co/600x400?text=Hub+USB",
+      "estoque": 16
+    },
+    {
+      "id": "11",
+      "nome": "Suporte para Notebook",
+      "descricao": "Suporte ajustável para melhorar a ergonomia.",
+      "preco": 89.90,
+      "categoria": "Acessórios",
+      "imagem": "https://placehold.co/600x400?text=Suporte",
+      "estoque": 11
+    },
+    {
+      "id": "12",
+      "nome": "Mousepad Grande",
+      "descricao": "Mousepad de superfície ampla e base antiderrapante.",
+      "preco": 59.90,
+      "categoria": "Acessórios",
+      "imagem": "https://placehold.co/600x400?text=Mousepad",
+      "estoque": 25
+    }
+  ]
+}
