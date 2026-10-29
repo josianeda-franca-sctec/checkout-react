@@ -1,14 +1,15 @@
 
 import { useEffect, useState } from 'react'
+import ProdutoCard from '../components/ProdutoCard'
 
 function Produtos() {
   const [produtos, setProdutos] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
 
-  useEffect(() => {
+   useEffect(() => {
     const controller = new AbortController()
-
+    
     async function buscarProdutos() {
       try {
         const resposta = await fetch(
@@ -19,7 +20,7 @@ function Produtos() {
         if (!resposta.ok) {
           throw new Error('Não foi possível carregar os produtos.')
         }
-
+        
         const dados = await resposta.json()
         setProdutos(dados)
       } catch (error) {
@@ -38,6 +39,10 @@ function Produtos() {
     return () => controller.abort()
   }, [])
 
+  function adicionarAoCarrinho(produto) {
+    console.log('Produto selecionado:', produto.nome)
+  }
+
   if (carregando) {
     return <p role="status">Carregando produtos...</p>
   }
@@ -54,20 +59,15 @@ function Produtos() {
     <main>
       <h1>Produtos disponíveis</h1>
 
-      <ul>
+      <section aria-label="Catálogo de produtos">
         {produtos.map((produto) => (
-          <li key={produto.id}>
-            <h2>{produto.nome}</h2>
-            <p>{produto.descricao}</p>
-            <p>
-              {produto.preco.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </p>
-          </li>
+          <ProdutoCard
+            key={produto.id}
+            produto={produto}
+            onAdicionar={adicionarAoCarrinho}
+          />
         ))}
-      </ul>
+      </section>
     </main>
   )
 }
