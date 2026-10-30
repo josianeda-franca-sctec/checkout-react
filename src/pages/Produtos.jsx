@@ -1,15 +1,17 @@
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import ProdutoCard from '../components/ProdutoCard'
+import { filtrarProdutos } from '../utils/filtrarProdutos'
 
 function Produtos() {
   const [produtos, setProdutos] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
+  const [termoBusca, setTermoBusca] = useState('')
 
-   useEffect(() => {
+  useEffect(() => {
     const controller = new AbortController()
-    
+
     async function buscarProdutos() {
       try {
         const resposta = await fetch(
@@ -20,7 +22,7 @@ function Produtos() {
         if (!resposta.ok) {
           throw new Error('Não foi possível carregar os produtos.')
         }
-        
+
         const dados = await resposta.json()
         setProdutos(dados)
       } catch (error) {
@@ -38,6 +40,11 @@ function Produtos() {
 
     return () => controller.abort()
   }, [])
+
+  const produtosFiltrados = useMemo(
+    () => filtrarProdutos(produtos, termoBusca),
+    [produtos, termoBusca]
+  )
 
   function adicionarAoCarrinho(produto) {
     console.log('Produto selecionado:', produto.nome)
@@ -59,15 +66,44 @@ function Produtos() {
     <main>
       <h1>Produtos disponíveis</h1>
 
-      <section aria-label="Catálogo de produtos">
-        {produtos.map((produto) => (
-          <ProdutoCard
-            key={produto.id}
-            produto={produto}
-            onAdicionar={adicionarAoCarrinho}
-          />
-        ))}
-      </section>
+      <div>
+        <label htmlFor="busca-produtos">
+          Buscar produtos
+        </label>
+
+        <input
+          id="busca-produtos"
+          type="search"
+          placeholder="Digite o nome do produto"
+          value={termoBusca}
+          onChange={(evento) => setTermoBusca(evento.target.value)}
+        />
+
+        {termoBusca && (
+          <button
+            type="button"
+            onClick={() => setTermoBusca('')}
+          >
+            Limpar busca
+          </button>
+        )}
+      </div>
+
+      {produtosFiltrados.length === 0 ? (
+        <p role="status">
+          Nenhum produto encontrado para "{termoBusca}".
+        </p>
+      ) : (
+        <section aria-label="Catálogo de produtos">
+          {produtosFiltrados.map((produto) => (
+            <ProdutoCard
+              key={produto.id}
+              produto={produto}
+              onAdicionar={adicionarAoCarrinho}
+            />
+          ))}
+        </section>
+      )}
     </main>
   )
 }
