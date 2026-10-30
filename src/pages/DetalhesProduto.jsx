@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useCarrinho } from '../hooks/useCarrinho'
 
 function DetalhesProduto() {
     const { id } = useParams()
+    const { adicionarItem } = useCarrinho()
 
     const [produto, setProduto] = useState(null)
     const [carregando, setCarregando] = useState(true)
@@ -88,6 +90,15 @@ function DetalhesProduto() {
                 <p>{produto.descricao}</p>
                 <p>Preço: {precoFormatado}</p>
                 <p>Estoque disponível: {produto.estoque}</p>
+                <button
+                    type="button"
+                    onClick={() => adicionarItem(produto)}
+                    disabled={produto.estoque <= 0}
+                >
+                    {produto.estoque > 0
+                        ? 'Adicionar ao carrinho'
+                        : 'Produto indisponível'}
+                </button>
             </article>
         </main>
     )

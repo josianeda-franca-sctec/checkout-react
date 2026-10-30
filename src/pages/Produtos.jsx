@@ -2,8 +2,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import ProdutoCard from '../components/ProdutoCard'
 import { filtrarProdutos } from '../utils/filtrarProdutos'
+import { useCarrinho } from '../hooks/useCarrinho'
 
 function Produtos() {
+  const { adicionarItem } = useCarrinho()
+
   const [produtos, setProdutos] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
@@ -47,8 +50,8 @@ function Produtos() {
   )
 
   function adicionarAoCarrinho(produto) {
-    console.log('Produto selecionado:', produto.nome)
-  }
+  adicionarItem(produto)
+}
 
   if (carregando) {
     return <p role="status">Carregando produtos...</p>
