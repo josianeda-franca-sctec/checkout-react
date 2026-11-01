@@ -114,7 +114,7 @@ form {
   border: 1px solid #131212;
   padding: 20px;
   border-radius: 8px;
-  }
+}
 
 form div {
   margin-bottom: 16px;
@@ -182,7 +182,7 @@ button:hover:not(:disabled) {
   opacity: 0.85;
 }
 
-main > a:not(.botao-finalizar) {
+main>a:not(.botao-finalizar) {
   display: inline-block;
   margin-top: 8px;
   padding: 12px 20px;
@@ -193,7 +193,7 @@ main > a:not(.botao-finalizar) {
   color: #eee8e8;
 }
 
-main > a:not(.botao-finalizar):hover {
+main>a:not(.botao-finalizar):hover {
   opacity: 0.85;
 }
 
@@ -321,7 +321,7 @@ main > a:not(.botao-finalizar):hover {
     width: 100%;
   }
 
-  main > a:not(.botao-finalizar) {
+  main>a:not(.botao-finalizar) {
     width: 100%;
     text-align: center;
   }
@@ -377,4 +377,108 @@ form p[role="alert"] {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 12px;
+}
+
+.cabecalho nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cabecalho nav a {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #0d0d0e;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.cabecalho nav a:hover {
+  background-color: #254f85;
+}
+
+/* Controles de quantidade do carrinho */
+
+.controle-quantidade {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.controle-quantidade button {
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.controle-quantidade span {
+  font-size: 1rem;
+}
+
+.dados-produto .botao-remover {
+  width: auto;
+  margin-top: 10px;
+  padding: 9px 14px;
+  background-color: #a32222;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.dados-produto .botao-remover:hover {
+  background-color: #7f1717;
+}
+
+@media (max-width: 600px) {
+  .cabecalho {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cabecalho nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cabecalho nav a {
+    flex: 1;
+    text-align: center;
+  }
+
+  .controle-quantidade {
+    gap: 8px;
+  }
+
+  .controle-quantidade button {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .dados-produto .botao-remover {
+    width: auto;
+    max-width: 100%;
+    font-size: 0.8rem;
+  }
 }

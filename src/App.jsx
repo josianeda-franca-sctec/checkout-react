@@ -15,6 +15,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Carrinho />} />
+        <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/produtos/:id" element={<DetalhesProduto />}/>
         <Route path="/pagamento" element={<Pagamento />} />
