@@ -482,3 +482,18 @@ button:disabled {
     font-size: 0.8rem;
   }
 }
+
+.contador-carrinho {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  color: #0d0d0e;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
