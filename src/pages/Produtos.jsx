@@ -50,8 +50,8 @@ function Produtos() {
   )
 
   function adicionarAoCarrinho(produto) {
-  adicionarItem(produto)
-}
+    adicionarItem(produto)
+  }
 
   if (carregando) {
     return <p role="status">Carregando produtos...</p>

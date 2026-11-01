@@ -7,7 +7,7 @@
       "descricao": "Notebook para estudos, trabalho e produtividade.",
       "preco": 3299.90,
       "categoria": "Computadores",
-      "imagem": "https://placehold.co/600x400?text=Notebook",
+      "imagem": "produtos/notebook.png",
       "estoque": 8
     },
     {
@@ -16,7 +16,7 @@
       "descricao": "Monitor com resolução Full HD para uso diário.",
       "preco": 799.90,
       "categoria": "Computadores",
-      "imagem": "https://placehold.co/600x400?text=Monitor",
+      "imagem": "produtos/monitor.png",
       "estoque": 12
     },
     {
@@ -25,7 +25,7 @@
       "descricao": "Unidade de armazenamento SSD de alta velocidade.",
       "preco": 449.90,
       "categoria": "Computadores",
-      "imagem": "https://placehold.co/600x400?text=SSD",
+      "imagem": "produtos/ssd.png",
       "estoque": 15
     },
     {
@@ -34,16 +34,16 @@
       "descricao": "Módulo de memória DDR4 para computadores.",
       "preco": 289.90,
       "categoria": "Computadores",
-      "imagem": "https://placehold.co/600x400?text=Memoria+RAM",
+      "imagem": "produtos/memoria-ram.png",
       "estoque": 20
     },
     {
       "id": "5",
       "nome": "Teclado Mecânico",
       "descricao": "Teclado mecânico com conexão USB.",
-      "preco": 219.90,
+      "preco": 199.90,
       "categoria": "Periféricos",
-      "imagem": "https://placehold.co/600x400?text=Teclado",
+      "imagem": "/produtos/teclado.png",
       "estoque": 10
     },
     {
@@ -52,16 +52,16 @@
       "descricao": "Mouse óptico com sensibilidade ajustável.",
       "preco": 129.90,
       "categoria": "Periféricos",
-      "imagem": "https://placehold.co/600x400?text=Mouse",
+      "imagem": "/produtos/mouse.png",
       "estoque": 18
     },
     {
       "id": "7",
-      "nome": "Headset USB",
+      "nome": "Headset",
       "descricao": "Headset com microfone para chamadas e jogos.",
-      "preco": 179.90,
+      "preco": 249.90,
       "categoria": "Periféricos",
-      "imagem": "https://placehold.co/600x400?text=Headset",
+      "imagem": "/produtos/headset.png",
       "estoque": 14
     },
     {
@@ -70,7 +70,7 @@
       "descricao": "Webcam para videoconferências e aulas online.",
       "preco": 199.90,
       "categoria": "Periféricos",
-      "imagem": "https://placehold.co/600x400?text=Webcam",
+      "imagem": "produtos/webcam.png",
       "estoque": 9
     },
     {
@@ -79,7 +79,7 @@
       "descricao": "Cabo HDMI para conexão de vídeo e áudio.",
       "preco": 39.90,
       "categoria": "Acessórios",
-      "imagem": "https://placehold.co/600x400?text=Cabo+HDMI",
+      "imagem": "produtos/cabo-hdmi.png",
       "estoque": 30
     },
     {
@@ -88,7 +88,7 @@
       "descricao": "Hub USB para conectar múltiplos dispositivos.",
       "preco": 69.90,
       "categoria": "Acessórios",
-      "imagem": "https://placehold.co/600x400?text=Hub+USB",
+      "imagem": "produtos/hub-usb.png",
       "estoque": 16
     },
     {
@@ -97,7 +97,7 @@
       "descricao": "Suporte ajustável para melhorar a ergonomia.",
       "preco": 89.90,
       "categoria": "Acessórios",
-      "imagem": "https://placehold.co/600x400?text=Suporte",
+      "imagem": "produtos/suporte-notebook.png",
       "estoque": 11
     },
     {
@@ -106,7 +106,7 @@
       "descricao": "Mousepad de superfície ampla e base antiderrapante.",
       "preco": 59.90,
       "categoria": "Acessórios",
-      "imagem": "https://placehold.co/600x400?text=Mousepad",
+      "imagem": "produtos/mousepad.png",
       "estoque": 25
     }
   ]
