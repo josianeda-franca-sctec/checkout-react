@@ -4,9 +4,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import usePagamento from '../hooks/usePagamento'
-import produtos from '../data/produtos'
+import { useCarrinho } from '../hooks/useCarrinho'
 import ResumoCompra from '../components/ResumoCompra'
-import { calcularTotal } from '../utils/carrinho'
 
 const pagamentoSchema = z.object({
   titular: z
@@ -94,8 +93,8 @@ function Pagamento() {
 
   const { processando, processarPagamento } = usePagamento()
 
-  const total = calcularTotal(produtos)
-
+  const { valorTotal, limparCarrinho } = useCarrinho()
+  
   const {
   register,
   handleSubmit,
@@ -145,23 +144,24 @@ function Pagamento() {
   }
 
   async function enviarPagamento(dados) {
-    const aprovado = await processarPagamento(
-      dados.numeroCartao,
-    )
+  const aprovado = await processarPagamento(
+    dados.numeroCartao,
+  )
 
-    if (aprovado) {
-      navigate('/sucesso')
-      return
-    }
-
-    navigate('/falha')
+  if (aprovado) {
+    limparCarrinho()
+    navigate('/sucesso')
+    return
   }
+
+  navigate('/falha')
+}
 
   return (
     <main>
       <h1>Pagamento</h1>
 
-      <ResumoCompra total={total} />
+     <ResumoCompra total={valorTotal} />
 
       <form onSubmit={handleSubmit(enviarPagamento)}>
         <div>

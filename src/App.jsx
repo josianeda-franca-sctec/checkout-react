@@ -7,6 +7,7 @@ import Sucesso from './pages/Sucesso'
 import Falha from './pages/Falha'
 import Produtos from './pages/Produtos'
 import DetalhesProduto from './pages/DetalhesProduto'
+import RotaPrivada from './components/RotaPrivada'
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Route path="/" element={<Carrinho />} />
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/produtos" element={<Produtos />} />
-        <Route path="/produtos/:id" element={<DetalhesProduto />}/>
-        <Route path="/pagamento" element={<Pagamento />} />
+        <Route path="/produtos/:id" element={<DetalhesProduto />} />
+        <Route path="/pagamento" element={<RotaPrivada><Pagamento /></RotaPrivada>} />
         <Route path="/sucesso" element={<Sucesso />} />
         <Route path="/falha" element={<Falha />} />
       </Routes>
