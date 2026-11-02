@@ -145,15 +145,16 @@ form p {
 }
 
 button {
-  display: inline-block;
+  display: flex;
+  justify-content: flex-end;
   margin-top: 8px;
   padding: 12px 20px;
-  border: none;
+  border: 2px solid #000000;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
-  background-color: #0d0d0e;
-  color: #eee8e8;
+  font-size: 1.2rem;
+  background-color: #070707;
+  color: rgb(250, 248, 248);
 }
 
 button:disabled {
@@ -220,7 +221,7 @@ main>a:not(.botao-finalizar):hover {
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 15rem;
     margin-bottom: 20px;
   }
 
@@ -245,7 +246,7 @@ main>a:not(.botao-finalizar):hover {
   }
 
   .dados-produto h2 {
-    font-size: 1rem;
+    font-size: 3rem;
     margin: 0 0 4px;
   }
 
@@ -497,3 +498,43 @@ button:disabled {
   font-size: 0.8rem;
   font-weight: bold;
 }
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout > main {
+  flex: 1;
+}
+
+.rodape {
+  width: 100%;
+  padding: 20px 16px;
+  background-color: #91b6e0;
+  border-top: 1px solid #131212;
+  text-align: center;
+}
+
+.rodape p {
+  margin: 6px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .rodape {
+    padding: 16px 12px;
+  }
+
+  .rodape p {
+    font-size: 1.2rem;
+  font-weight: bold;
+  }
+
+  .layout > main:has(.botao-finalizar) {
+    padding-bottom: 145px;
+  }
+}
+
