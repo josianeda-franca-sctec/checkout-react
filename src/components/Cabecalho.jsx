@@ -1,12 +1,14 @@
+
 import { Link } from 'react-router-dom'
 import { useCarrinho } from '../hooks/useCarrinho'
 import logo from '../assets/img/logo-techstore.png'
+import styles from './Cabecalho.module.css'
 
 function Cabecalho() {
   const { quantidadeTotal } = useCarrinho()
 
   return (
-    <header className="cabecalho">
+    <header className={styles.cabecalho}>
       <Link
         to="/"
         aria-label="Ir para a página inicial da TechStore"
@@ -14,11 +16,14 @@ function Cabecalho() {
         <img
           src={logo}
           alt="TechStore - Tecnologia ao seu alcance"
-          className="logo"
+          className={styles.logo}
         />
       </Link>
 
-      <nav aria-label="Navegação principal">
+      <nav
+        className={styles.navegacao}
+        aria-label="Navegação principal"
+      >
         <Link to="/produtos">
           Produtos
         </Link>
@@ -26,7 +31,7 @@ function Cabecalho() {
         <Link to="/carrinho">
           Carrinho
           <span
-            className="contador-carrinho"
+            className={styles.contadorCarrinho}
             aria-label={`${quantidadeTotal} produtos no carrinho`}
           >
             {quantidadeTotal}
