@@ -1,265 +1,329 @@
-# TechStore Checkout
+# TechStore — Loja Virtual em React
 
-> Aplicação de checkout desenvolvida em React para simular o fluxo de finalização de uma compra em uma loja virtual.
-
----
+> Aplicação web de comércio eletrônico desenvolvida em React, com catálogo de produtos, busca, carrinho de compras, checkout e simulação de pagamento.
 
 ## 📌 Sobre o projeto
 
-O **TechStore Checkout** é uma aplicação web desenvolvida como projeto avaliativo do **Módulo II** do curso **Carreira Tech - Trilha Desenvolvimento de Software**.
+A **TechStore** é uma aplicação desenvolvida como projeto avaliativo do **Módulo II** do curso **Carreira Tech — Trilha Desenvolvimento de Software**, pela aluna **Josiane da França**.
 
-**Projeto desenvolvido pela aluna Josiane da França.**
+O projeto representa a evolução de uma aplicação de checkout para uma loja virtual, aplicando conceitos de React, componentização, gerenciamento de estado, consumo de API, navegação, validação de formulários, testes automatizados e publicação web.
 
-A aplicação simula o checkout de uma loja virtual, permitindo ao usuário visualizar os produtos do carrinho, conferir subtotais e o valor total da compra, preencher dados fictícios de pagamento e receber uma resposta de aprovação ou falha.
+**Acesse a aplicação:** https://techstorejosi.netlify.app
 
-Todo o processamento ocorre no navegador, sem utilização de backend ou gateway de pagamento real.
+O pagamento é inteiramente simulado. Não existe integração com gateway de pagamento real.
 
 ---
 
 ## 🛒 Funcionalidades
 
-A aplicação possui:
+### Catálogo de produtos
 
-- carrinho fixo com três produtos;
-- exibição de nome, preço unitário, quantidade e subtotal;
-- cálculo automático do valor total da compra;
-- formatação dos valores em Real brasileiro;
-- navegação entre páginas utilizando React Router;
-- formulário de pagamento utilizando React Hook Form;
-- validação dos campos utilizando Zod;
-- máscara para número do cartão e validade;
-- validação do nome do titular;
-- validação de cartão com 16 dígitos;
-- validação da validade no formato MM/AA;
-- validação de CVV com três dígitos;
-- processamento assíncrono simulado;
-- bloqueio do botão durante o processamento;
-- regra de identificação de cartões com todos os dígitos iguais;
-- página de compra aprovada;
-- página de falha com a mensagem `tentativa de golpe`;
-- interface responsiva para celular e desktop;
-- recursos de acessibilidade, como labels, foco visível e mensagens de erro acessíveis.
+- Listagem de 12 produtos de tecnologia.
+- Consumo de dados de uma API simulada com `json-server`.
+- Exibição de nome, imagem, categoria, preço e disponibilidade.
+- Busca e filtragem de produtos.
+- Tratamento dos estados de carregamento e erro.
+- Página de detalhes com rota dinâmica `/produtos/:id`.
+- Tratamento de produtos inexistentes.
+
+### Carrinho de compras
+
+- Adição de produtos ao carrinho.
+- Gerenciamento global do carrinho com Context API.
+- Hook personalizado `useCarrinho`.
+- Alteração da quantidade de produtos, respeitando o estoque.
+- Remoção de produtos.
+- Cálculo automático de subtotais e valor total.
+- Indicador da quantidade de itens no cabeçalho.
+- Persistência dos itens no `localStorage`.
+- Exibição de mensagem quando o carrinho está vazio.
+
+### Checkout e pagamento
+
+- Rota de pagamento protegida contra acesso com carrinho vazio.
+- Resumo dos produtos e valores da compra.
+- Formulário utilizando React Hook Form.
+- Validação utilizando Zod.
+- Máscaras para número e validade do cartão.
+- Validação de titular, número do cartão, validade e CVV.
+- Processamento assíncrono simulado.
+- Bloqueio do botão durante o processamento.
+- Página de sucesso e página de falha.
+- Limpeza do carrinho após pagamento aprovado.
+
+### Interface e navegação
+
+- React Router para navegação entre páginas.
+- Layout compartilhado com cabeçalho e rodapé.
+- Página personalizada para rotas inexistentes.
+- Componentes reutilizáveis.
+- Interface responsiva.
+- Recursos de acessibilidade.
 
 ---
 
 ## 💳 Regra de pagamento
 
-O pagamento é apenas uma simulação.
+O pagamento é uma simulação destinada ao aprendizado.
 
-Após a validação do formulário:
+Após a validação dos campos, a aplicação verifica o número do cartão:
 
-- cartões válidos com 16 dígitos que não sejam todos iguais são aprovados;
-- cartões em que todos os 16 dígitos são iguais são rejeitados;
-- nesse caso, o usuário é direcionado para a página de falha com a mensagem:
+- Cartões que atendem às validações e não possuem todos os dígitos iguais podem ser aprovados.
+- Cartões com todos os 16 dígitos iguais são rejeitados.
+- Em caso de rejeição por essa regra, a aplicação apresenta a mensagem `tentativa de golpe`.
 
-```text
-tentativa de golpe
-```
-
-Nenhum dado de pagamento é enviado ou armazenado.
+Nenhuma transação financeira real é realizada.
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
 - React
-- JavaScript
-- JSX
+- JavaScript e JSX
 - Vite
 - React Router
+- Context API
+- React Hooks
 - React Hook Form
 - Zod
-- CSS
-- Git
-- GitHub
+- PropTypes
+- Material UI
+- CSS e CSS Modules
+- JSON Server
+- LocalStorage
+- Vitest
+- ESLint
+- Git e GitHub
+- Netlify
 
 ---
 
 ## 🧠 Conceitos aplicados
 
-Durante o desenvolvimento foram utilizados:
+O desenvolvimento permitiu praticar:
 
-- componentes funcionais;
-- props;
-- renderização de listas com `map`;
-- uso de `key`;
-- arrays e objetos;
-- métodos de array;
-- `useState`;
-- eventos em React;
-- renderização condicional;
-- custom hooks;
-- Promises;
-- `async/await`;
-- validação de formulários;
-- rotas e navegação;
-- responsividade;
-- acessibilidade;
-- organização modular do código.
-
----
-
-## 📁 Estrutura do projeto
-
-```text
-checkout-react/
-├── src/
-│   ├── assets/
-│   │   ├── img/
-│   │   └── styles/
-│   │       └── index.css
-│   ├── components/
-│   │   ├── Cabecalho.jsx
-│   │   ├── ItemCarrinho.jsx
-│   │   └── ResumoCompra.jsx
-│   ├── data/
-│   │   └── produtos.js
-│   ├── hooks/
-│   │   └── usePagamento.js
-│   ├── pages/
-│   │   ├── Carrinho.jsx
-│   │   ├── Pagamento.jsx
-│   │   ├── Sucesso.jsx
-│   │   └── Falha.jsx
-│   ├── utils/
-│   │   ├── carrinho.js
-│   │   └── pagamento.js
-│   ├── App.jsx
-│   └── main.jsx
-├── package.json
-├── README.md
-└── vite.config.js
-```
+- Componentização e reutilização de interfaces.
+- Props e validação de propriedades.
+- Estados com `useState`.
+- Efeitos colaterais com `useEffect`.
+- Otimização com `useMemo`.
+- Gerenciamento de estado com Context API.
+- Hooks personalizados.
+- Renderização condicional e listas.
+- Consumo de dados com `fetch`.
+- Promises e `async/await`.
+- Tratamento de erros e carregamento.
+- Rotas dinâmicas e protegidas.
+- Validação de formulários.
+- Persistência de dados no navegador.
+- Testes automatizados.
+- Responsividade e acessibilidade.
+- Organização modular e princípios de Clean Code.
+- Versionamento com GitFlow.
 
 ---
 
 ## ▶️ Como executar o projeto
 
-É necessário possuir o **Node.js** e o **npm** instalados.
+É necessário ter Node.js e npm instalados.
 
-### 1. Clone o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/josianeda-franca-sctec/checkout-react.git
 ```
 
-### 2. Entre na pasta do projeto
+### 2. Entrar na pasta
 
 ```bash
 cd checkout-react
 ```
 
-### 3. Instale as dependências
+### 3. Instalar as dependências
 
 ```bash
 npm install
 ```
 
-### 4. Inicie o servidor de desenvolvimento
+### 4. Iniciar a API simulada
+
+Em um terminal:
+
+```bash
+npm run api
+```
+
+A API estará disponível em:
+
+```text
+http://localhost:3001/produtos
+```
+
+### 5. Iniciar o React
+
+Em outro terminal:
 
 ```bash
 npm run dev
 ```
 
-O terminal exibirá um endereço semelhante a:
+Acesse o endereço informado pelo Vite, normalmente:
 
 ```text
 http://localhost:5173/
 ```
 
-Abra o endereço apresentado pelo Vite no navegador.
+**Importante:** no ambiente de desenvolvimento, a API simulada e o Vite precisam estar em execução simultaneamente.
+
+---
+
+## 🌐 API e publicação na Netlify
+
+Durante o desenvolvimento, os produtos são consultados por meio do `json-server`, utilizando os dados do arquivo `db.json`.
+
+Na versão de produção, o catálogo é disponibilizado pelo arquivo estático `public/produtos.json`, permitindo o funcionamento da aplicação na Netlify sem a necessidade de hospedar um servidor `json-server`.
+
+O projeto também utiliza o arquivo `public/_redirects` para permitir o acesso direto às rotas da aplicação React.
+
+**Aplicação publicada:** https://techstorejosi.netlify.app
+
+---
+
+## 🧪 Testes e qualidade do código
+
+O projeto utiliza Vitest para testar funções utilitárias relacionadas a:
+
+- Cálculo do valor total do carrinho.
+- Busca e filtragem de produtos.
+- Identificação de cartões com dígitos repetidos.
+
+Foram implementados **11 testes automatizados**, distribuídos em três arquivos de testes.
+
+Para executar:
+
+```bash
+npx vitest run
+```
+
+Para verificar o código com ESLint:
+
+```bash
+npm run lint
+```
+
+Para gerar a versão de produção:
+
+```bash
+npm run build
+```
+
+Na validação final, os 11 testes passaram, assim como o ESLint e o build de produção.
 
 ---
 
 ## 🔄 Fluxo da aplicação
 
 ```text
-Carrinho
-   │
-   ▼
+Catálogo de produtos
+        |
+        +---- Busca e filtragem
+        |
+        +---- Detalhes do produto
+        |
+        v
+Adicionar ao carrinho
+        |
+        v
+Carrinho de compras
+        |
+        +---- Alterar quantidades
+        +---- Remover produtos
+        +---- Conferir total
+        |
+        v
 Pagamento
-   │
-   ▼
-Processamento
-   │
-   ├───────────────┐
-   ▼               ▼
-Sucesso          Falha
-                   │
-                   ▼
-          "tentativa de golpe"
+        |
+        v
+Validação e processamento
+        |
+        +----------+
+        |          |
+        v          v
+     Sucesso      Falha
 ```
 
 ---
 
 ## ♿ Acessibilidade
 
-Foram implementados recursos básicos de acessibilidade, como:
+A aplicação incorpora recursos como:
 
-- associação entre `label` e campos do formulário;
-- foco visível para navegação por teclado;
-- indicação visual de campos inválidos;
-- mensagens de erro com `role="alert"`;
-- atributos `aria-invalid`;
-- atributos `aria-describedby`;
-- textos alternativos nas imagens.
+- Campos associados aos respectivos labels.
+- Textos alternativos em imagens.
+- Identificação de campos inválidos.
+- Mensagens de erro acessíveis.
+- Foco visível para navegação por teclado.
+- Atributos ARIA em componentes relevantes.
+- Botões com descrições de suas ações.
 
 ---
 
 ## 📱 Responsividade
 
-A interface foi desenvolvida para funcionar em diferentes tamanhos de tela, incluindo:
+A interface foi desenvolvida para diferentes tamanhos de tela, incluindo smartphones, tablets e computadores.
 
-- smartphones;
-- tablets;
-- computadores.
+O projeto utiliza CSS, CSS Modules e media queries para adaptar os componentes às dimensões disponíveis.
 
-Foram utilizadas **media queries** no CSS para adaptar o layout aos diferentes tamanhos de tela.
+---
+
+## 📋 Organização do desenvolvimento
+
+O projeto foi organizado com apoio do **Trello** e versionado no **GitHub**, utilizando branches de funcionalidades, Pull Requests e integração de alterações.
+
+**Quadro do Trello:**  
+https://trello.com/b/6nSJi5lU/projeto-semana-12-evolucao-checkout-react
 
 ---
 
 ## 🤖 Uso de Inteligência Artificial
 
-A Inteligência Artificial foi utilizada como ferramenta de apoio durante o desenvolvimento para:
+A Inteligência Artificial foi utilizada como ferramenta de apoio para:
 
-- esclarecimento de dúvidas;
-- auxílio na identificação de erros;
-- sugestões de organização do código;
-- revisão das validações;
-- melhorias de acessibilidade e responsividade.
+- Esclarecimento de dúvidas sobre React e JavaScript.
+- Identificação e correção de erros.
+- Sugestões de organização e componentização.
+- Revisão de validações.
+- Apoio na implementação de testes.
+- Melhorias de acessibilidade e responsividade.
+- Orientações sobre Git, GitHub e publicação.
 
-Todas as sugestões utilizadas foram revisadas, testadas e adaptadas ao conteúdo estudado durante o curso.
-
----
-
-## 🚀 Melhorias futuras
-
-Algumas melhorias que poderiam ser implementadas futuramente:
-
-- integração com uma API de produtos;
-- alteração da quantidade dos itens no carrinho;
-- remoção de produtos;
-- histórico de compras;
-- integração com um gateway de pagamento real.
+As sugestões foram revisadas, testadas e adaptadas aos conteúdos estudados durante o curso.
 
 ---
 
-## 📋 Organização do projeto
+## 🚀 Possíveis melhorias futuras
 
-As atividades e etapas de desenvolvimento foram organizadas utilizando o **Trello**.
-
-**Quadro do projeto:**  
-https://trello.com/b/5c0zvtci/projeto-checkout-react
+- Integração com uma API real de produtos.
+- Autenticação de usuários.
+- Histórico de pedidos.
+- Integração com um gateway de pagamento real.
+- Testes de integração e ponta a ponta.
+- Otimizações adicionais de desempenho e carregamento.
 
 ---
 
-## 🔗 Links do projeto
+## 🔗 Links
 
-**Repositório no GitHub:**  
-https://github.com/josianeda-franca-sctec/checkout-react
+**Aplicação publicada:**  
+https://techstorejosi.netlify.app
 
-**Vídeo de apresentação:**  
+**Repositório GitHub:**  
+https://github.com/josianeda-franca-sctec/checkout-react.git
+
+**Vídeo de apresentação do projeto inicial:**  
 https://drive.google.com/file/d/15Xw-uLkMD1rxhtRMzTnA_hlky2_O2QXd/view?usp=drive_link
+
+**Vídeo de apresentação do projeto final:**
 
 ---
 
@@ -267,4 +331,4 @@ https://drive.google.com/file/d/15Xw-uLkMD1rxhtRMzTnA_hlky2_O2QXd/view?usp=drive
 
 **Josiane da França**
 
-Projeto desenvolvido como atividade avaliativa do **Módulo II do curso Carreira Tech - Trilha Desenvolvimento de Software**.
+Projeto desenvolvido como atividade avaliativa do **Módulo II do curso Carreira Tech — Trilha Desenvolvimento de Software**.
