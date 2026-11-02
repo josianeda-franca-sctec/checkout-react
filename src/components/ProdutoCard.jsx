@@ -1,5 +1,8 @@
+
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import Chip from '@mui/material/Chip'
+import styles from './ProdutoCard.module.css'
 
 function ProdutoCard({ produto, onAdicionar }) {
   const precoFormatado = produto.preco.toLocaleString('pt-BR', {
@@ -7,25 +10,38 @@ function ProdutoCard({ produto, onAdicionar }) {
     currency: 'BRL',
   })
 
-   return (
-    <article>
+  return (
+    <article className={styles.card}>
       <img
+        className={styles.imagem}
         src={produto.imagem}
         alt={`Imagem do produto ${produto.nome}`}
         loading="lazy"
         width="240"
       />
 
-      <h2>{produto.nome}</h2>
-      <p>Categoria: {produto.categoria}</p>
+      <h2 className={styles.titulo}>{produto.nome}</h2>
+
+      <Chip
+        label={produto.categoria}
+        size="small"
+        variant="outlined"
+        sx={{
+          marginBottom: '8px',
+          borderColor: '#131212',
+          color: '#222',
+        }}
+      />
+
       <p>{precoFormatado}</p>
 
       <Link to={`/produtos/${produto.id}`}>
         Ver detalhes
       </Link>
 
-       <button
+      <button
         type="button"
+        className={styles.botaoAdicionar}
         onClick={() => onAdicionar(produto)}
         disabled={produto.estoque <= 0}
       >

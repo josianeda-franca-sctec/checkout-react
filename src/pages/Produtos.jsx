@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import ProdutoCard from '../components/ProdutoCard'
 import { filtrarProdutos } from '../utils/filtrarProdutos'
 import { useCarrinho } from '../hooks/useCarrinho'
+import Alert from '@mui/material/Alert'
 
 function Produtos() {
   const { adicionarItem } = useCarrinho()
@@ -58,11 +59,19 @@ function Produtos() {
   }
 
   if (erro) {
-    return <p role="alert">{erro}</p>
+    return (
+      <Alert severity="error" role="alert">
+        {erro}
+      </Alert>
+    )
   }
 
   if (produtos.length === 0) {
-    return <p>Nenhum produto disponível no momento.</p>
+    return (
+      <Alert severity="info">
+        Nenhum produto disponível no momento.
+      </Alert>
+    )
   }
 
   return (
@@ -93,11 +102,11 @@ function Produtos() {
       </div>
 
       {produtosFiltrados.length === 0 ? (
-        <p role="status">
+        <Alert severity="info" role="status">
           Nenhum produto encontrado para "{termoBusca}".
-        </p>
+        </Alert>
       ) : (
-        <section aria-label="Catálogo de produtos">
+        <section className="grade-produtos" aria-label="Catálogo de produtos">
           {produtosFiltrados.map((produto) => (
             <ProdutoCard
               key={produto.id}
