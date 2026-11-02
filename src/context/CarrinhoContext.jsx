@@ -1,10 +1,38 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { CarrinhoContext } from './carrinhoContext'
 
+const CHAVE_CARRINHO = 'techstore-carrinho'
+
+function carregarCarrinho() {
+    try {
+        const dadosSalvos = localStorage.getItem(CHAVE_CARRINHO)
+
+        if (!dadosSalvos) {
+            return []
+        }
+
+        const itensSalvos = JSON.parse(dadosSalvos)
+
+        return Array.isArray(itensSalvos) ? itensSalvos : []
+    } catch {
+        return []
+    }
+}
 
 export function CarrinhoProvider({ children }) {
-    const [itens, setItens] = useState([])
+    const [itens, setItens] = useState(carregarCarrinho)
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(
+                CHAVE_CARRINHO,
+                JSON.stringify(itens)
+            )
+        } catch {
+            // O carrinho continua funcionando em memória.
+        }
+    }, [itens])
 
     function adicionarItem(produto) {
         setItens((itensAtuais) => {
