@@ -1,0 +1,20 @@
+
+.rodape {
+  width: 100%;
+  padding: 20px 16px;
+  background-color: #91b6e0;
+  border-top: 1px solid #131212;
+  text-align: center;
+}
+
+.rodape p {
+  margin: 6px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .rodape {
+    padding: 16px 12px;
+  }
+}
