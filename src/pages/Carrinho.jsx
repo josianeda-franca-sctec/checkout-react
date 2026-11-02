@@ -35,7 +35,7 @@ function Carrinho() {
             ))}
           </section>
 
-          <ResumoCompra total={valorTotal} />
+          <ResumoCompra itens={itens} total={valorTotal} />
 
           <Link
             to="/pagamento"

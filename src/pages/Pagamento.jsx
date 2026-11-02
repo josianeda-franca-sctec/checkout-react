@@ -93,7 +93,7 @@ function Pagamento() {
 
   const { processando, processarPagamento } = usePagamento()
 
-  const { valorTotal, limparCarrinho } = useCarrinho()
+  const { itens, valorTotal, limparCarrinho } = useCarrinho()
   
   const {
   register,
@@ -161,7 +161,7 @@ function Pagamento() {
     <main>
       <h1>Pagamento</h1>
 
-     <ResumoCompra total={valorTotal} />
+     <ResumoCompra itens={itens} total={valorTotal} />
 
       <form onSubmit={handleSubmit(enviarPagamento)}>
         <div>

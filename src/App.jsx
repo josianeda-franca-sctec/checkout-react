@@ -17,14 +17,20 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Carrinho />} />
-          <Route path="/carrinho" element={<Carrinho />} />
+          <Route path="/" element={<Produtos />} />
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/produtos/:id" element={<DetalhesProduto />} />
-          <Route path="/pagamento" element={<RotaPrivada> <Pagamento />
-          </RotaPrivada>
-          } />
-          
+          <Route path="/carrinho" element={<Carrinho />} />
+
+          <Route
+            path="/pagamento"
+            element={
+              <RotaPrivada>
+                <Pagamento />
+              </RotaPrivada>
+            }
+          />
+
           <Route path="/sucesso" element={<Sucesso />} />
           <Route path="/falha" element={<Falha />} />
           <Route path="*" element={<NaoEncontrada />} />
