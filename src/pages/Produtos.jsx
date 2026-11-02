@@ -4,6 +4,7 @@ import ProdutoCard from '../components/ProdutoCard'
 import { filtrarProdutos } from '../utils/filtrarProdutos'
 import { useCarrinho } from '../hooks/useCarrinho'
 import Alert from '@mui/material/Alert'
+import { buscarProdutos } from '../services/produtosService'
 
 function Produtos() {
   const { adicionarItem } = useCarrinho()
@@ -15,19 +16,9 @@ function Produtos() {
 
   useEffect(() => {
     const controller = new AbortController()
-
-    async function buscarProdutos() {
+    async function carregarProdutos() {
       try {
-        const resposta = await fetch(
-          'http://localhost:3001/produtos',
-          { signal: controller.signal }
-        )
-
-        if (!resposta.ok) {
-          throw new Error('Não foi possível carregar os produtos.')
-        }
-
-        const dados = await resposta.json()
+        const dados = await buscarProdutos(controller.signal)
         setProdutos(dados)
       } catch (error) {
         if (error.name !== 'AbortError') {
@@ -40,7 +31,7 @@ function Produtos() {
       }
     }
 
-    buscarProdutos()
+    carregarProdutos()
 
     return () => controller.abort()
   }, [])

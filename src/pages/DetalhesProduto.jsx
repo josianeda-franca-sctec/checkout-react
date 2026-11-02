@@ -1,6 +1,8 @@
+
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useCarrinho } from '../hooks/useCarrinho'
+import { buscarProdutoPorId } from '../services/produtosService'
 
 function DetalhesProduto() {
     const { id } = useParams()
@@ -19,21 +21,16 @@ function DetalhesProduto() {
             setProduto(null)
 
             try {
-                const resposta = await fetch(
-                    `http://localhost:3001/produtos/${encodeURIComponent(id)}`,
-                    { signal: controller.signal }
+                const dados = await buscarProdutoPorId(
+                    id,
+                    controller.signal
                 )
 
-                if (resposta.status === 404) {
+                if (!dados) {
                     setErro('Produto não encontrado.')
                     return
                 }
 
-                if (!resposta.ok) {
-                    throw new Error('Erro ao consultar produto.')
-                }
-
-                const dados = await resposta.json()
                 setProduto(dados)
             } catch (error) {
                 if (error.name !== 'AbortError') {
@@ -90,6 +87,7 @@ function DetalhesProduto() {
                 <p>{produto.descricao}</p>
                 <p>Preço: {precoFormatado}</p>
                 <p>Estoque disponível: {produto.estoque}</p>
+
                 <button
                     type="button"
                     onClick={() => adicionarItem(produto)}
