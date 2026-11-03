@@ -93,7 +93,7 @@ function Pagamento() {
 
   const { processando, processarPagamento } = usePagamento()
 
-  const { itens, valorTotal, limparCarrinho } = useCarrinho()
+const { itens, valorTotal } = useCarrinho()
   
   const {
   register,
@@ -143,14 +143,16 @@ function Pagamento() {
     evento.target.value = valor
   }
 
-  async function enviarPagamento(dados) {
+ async function enviarPagamento(dados) {
   const aprovado = await processarPagamento(
-    dados.numeroCartao,
+    dados.numeroCartao
   )
 
   if (aprovado) {
-    limparCarrinho()
-    navigate('/sucesso')
+    navigate('/sucesso', {
+      replace: true,
+      state: { pagamentoAprovado: true },
+    })
     return
   }
 
