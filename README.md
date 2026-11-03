@@ -323,7 +323,8 @@ https://github.com/josianeda-franca-sctec/checkout-react.git
 **Vídeo de apresentação do projeto inicial:**  
 https://drive.google.com/file/d/15Xw-uLkMD1rxhtRMzTnA_hlky2_O2QXd/view?usp=drive_link
 
-**Vídeo de apresentação do projeto final:**
+**Vídeo de apresentação do projeto final:** 
+https://drive.google.com/file/d/1DOPY17ce-JCKyNKNJb3gUxRwhI9rL-OP/view?usp=drive_link
 
 ---
 
